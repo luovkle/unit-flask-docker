@@ -1,0 +1,30 @@
+{
+  "listeners": {
+    "*:80": {
+      "pass": "routes"
+    }
+  },
+  "routes": [
+    {
+      "match": {
+        "uri": "/static/*"
+      },
+      "action": {
+        "share": "/www/flaskr$uri"
+      }
+    },
+    {
+      "action": {
+        "pass": "applications/flaskr"
+      }
+    }
+  ],
+  "applications": {
+    "flaskr": {
+      "type": "python 3.12",
+      "path": "/www/",
+      "module": "flaskr.wsgi",
+      "callable": "app"
+    }
+  }
+}
